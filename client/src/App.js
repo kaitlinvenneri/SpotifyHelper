@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Liked Songs:
+          Liked Songs from Spotify:
         </p>
         <a
           className="App-link"
