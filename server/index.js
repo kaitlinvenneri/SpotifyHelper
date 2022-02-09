@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 //Endpoint to retrieve saved tracks from Spotify
 app.get('/savedtracks', async (req, response) => {
   token =
-    'BQCxUxy8GeyeSivoL6WU-87YRg0k29fv2nPCS9_45fyvu_TkTind5VnCmKK3dGZoXHzCiAeUmxznfp9P7SqbJ20HBIA23wi-2-vS-pqAtVDDc6sIQjlqUNuQP_3n3s0JkWIxR776-Ziwmxe4IQQXrFYDZ6iGVSxPmRoHnZoLfiMPJx1oYtnNCzMvG1o';
+    'BQABvpS6iYlmgVLSUmj2V08gPd-CW9oS6TkSBr7Wb_hxRqU1OC_R95744IFi308Z96PzYxF7BUYo-_-C7S7OnySbHPiI_Wy_0VBwgsvfPcNH6j1DfHgTVRt2mNivh02nftyIFtTUdGMuw4iTLUGLfOenz9O8Fz9Sh1q5HDOIon0zPZ2-_wB3iTZ0HQM';
 
   options = {
     headers: {
