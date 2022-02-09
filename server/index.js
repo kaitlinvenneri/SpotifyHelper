@@ -58,19 +58,3 @@ app.get('/savedtracks', async (req, response) => {
 
   response.send(savedSongs);
 });
-
-getAllConfiguredSubgroups = async () => {
-  token =
-    'BQCCTLyV4fTDPFqbChj5Vsl4UsNynr2I1ISpuh6ADiQzoNRuxC_okNBZppJ6NdYXdXo79JIfjkzM01kHPbP52RvwXtucaAQ51KqPURh5wZQkQ7XT1MwtezAqrmfiYZRHmnt0-QHVofNDu77OIxgnwcWyLk0_3qXg4PH6y-BRorNK9DSlD-gD_3hMdJc';
-
-  options = {
-    headers: {
-      Authorization: 'Bearer ' + token,
-    },
-  };
-
-  return await axios
-    .get('https://api.spotify.com/v1/me/tracks"', options)
-    .then((response) => response.data)
-    .catch((err) => null);
-};
