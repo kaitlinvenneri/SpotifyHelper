@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   res.send('homepage');
 });
 
-//FIXME: This endpoint is super broken - investigate
+//Endpoint to retrieve saved tracks from Spotify
 app.get('/savedtracks', async (req, response) => {
   token =
     'BQCxUxy8GeyeSivoL6WU-87YRg0k29fv2nPCS9_45fyvu_TkTind5VnCmKK3dGZoXHzCiAeUmxznfp9P7SqbJ20HBIA23wi-2-vS-pqAtVDDc6sIQjlqUNuQP_3n3s0JkWIxR776-Ziwmxe4IQQXrFYDZ6iGVSxPmRoHnZoLfiMPJx1oYtnNCzMvG1o';
@@ -54,7 +54,7 @@ app.get('/savedtracks', async (req, response) => {
     //console.log(temp);
   }
 
-  console.log(savedSongs);
+  //console.log(savedSongs);
 
   response.send(savedSongs);
 });
