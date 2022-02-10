@@ -2,7 +2,6 @@ const axios = require('axios');
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const path = require('path');
 const fs = require('fs');
 const config = require('./config');
 
@@ -94,24 +93,33 @@ getTracks = async (offset, limit) => {
 
 //Endpoint to retrieve local tracks
 app.get('/localtracks', (req, response) => {
-  // try {
-  //   const data = fs.readFileSync(config.localFilePath, 'utf8');
-  //   console.log(data);
-  // } catch (err) {
-  //   console.error(err);
-  // }
+  getMusicFiles(config.localFilePath);
 
-  fs.readdir(config.localFilePath, function (err, files) {
+  response.send('hey');
+});
+
+let musicFiles = [];
+
+getMusicFiles = (path) => {
+  fs.readdir(path, function (err, files) {
     //handling error
     if (err) {
       return console.log('Unable to scan directory: ' + err);
     }
+
     //listing all files using forEach
     files.forEach(function (file) {
-      // Do whatever you want to do with the file
-      console.log(file);
-    });
-  });
+      let newPath = path + '/' + file;
 
-  response.send('hey');
-});
+      if (fs.lstatSync(newPath).isDirectory()) {
+        getMusicFiles(newPath);
+      } else {
+        //musicFiles.push(file);
+        //musicFiles.push(file);
+        console.log(file);
+      }
+    });
+
+    //return musicFiles;
+  });
+};
