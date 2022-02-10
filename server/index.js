@@ -2,6 +2,9 @@ const axios = require('axios');
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const path = require('path');
+const fs = require('fs');
+const config = require('./config');
 
 //cors needed for React integration since frontend exists on its own server
 app.use(cors());
@@ -35,15 +38,14 @@ app.get('/savedtracks', async (req, response) => {
     offset = offset + limit;
   }
 
-  console.log('number of songs returned = ' + savedSongs.length);
+  //console.log('number of songs returned = ' + savedSongs.length);
   //console.log(savedSongs);
 
   response.send(savedSongs);
 });
 
 getTracks = async (offset, limit) => {
-  token =
-    'BQABvpS6iYlmgVLSUmj2V08gPd-CW9oS6TkSBr7Wb_hxRqU1OC_R95744IFi308Z96PzYxF7BUYo-_-C7S7OnySbHPiI_Wy_0VBwgsvfPcNH6j1DfHgTVRt2mNivh02nftyIFtTUdGMuw4iTLUGLfOenz9O8Fz9Sh1q5HDOIon0zPZ2-_wB3iTZ0HQM';
+  token = config.token;
 
   options = {
     headers: {
@@ -73,7 +75,7 @@ getTracks = async (offset, limit) => {
     }
 
     let temp = {
-      id: song.track.id,
+      //id: song.track.id,
       name: song.track.name,
       artists: artists,
     };
@@ -89,3 +91,27 @@ getTracks = async (offset, limit) => {
 
   return savedSongs;
 };
+
+//Endpoint to retrieve local tracks
+app.get('/localtracks', (req, response) => {
+  // try {
+  //   const data = fs.readFileSync(config.localFilePath, 'utf8');
+  //   console.log(data);
+  // } catch (err) {
+  //   console.error(err);
+  // }
+
+  fs.readdir(config.localFilePath, function (err, files) {
+    //handling error
+    if (err) {
+      return console.log('Unable to scan directory: ' + err);
+    }
+    //listing all files using forEach
+    files.forEach(function (file) {
+      // Do whatever you want to do with the file
+      console.log(file);
+    });
+  });
+
+  response.send('hey');
+});
