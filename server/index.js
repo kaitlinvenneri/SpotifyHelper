@@ -98,8 +98,6 @@ app.get('/localtracks', (req, response) => {
   response.send('hey');
 });
 
-let musicFiles = [];
-
 getMusicFiles = (path) => {
   fs.readdir(path, function (err, files) {
     //handling error
@@ -117,6 +115,10 @@ getMusicFiles = (path) => {
         //musicFiles.push(file);
         //musicFiles.push(file);
         console.log(file);
+
+        //FIXME: I don't think I'm getting all files - see if there's a problem to resolve
+
+        //TODO: Extract file info and append to file here?
       }
     });
 
