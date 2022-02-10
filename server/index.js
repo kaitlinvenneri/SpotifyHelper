@@ -2,6 +2,7 @@ const axios = require('axios');
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 const fs = require('fs');
 const config = require('./config');
 
@@ -92,33 +93,31 @@ getTracks = async (offset, limit) => {
 };
 
 //Endpoint to retrieve local tracks
-app.get('/localtracks', (req, response) => {
+app.get('/localtracks', async (req, response) => {
   getMusicFiles(config.localFilePath);
 
   response.send('hey');
 });
 
-getMusicFiles = (path) => {
-  fs.readdir(path, function (err, files) {
+getMusicFiles = (filePath) => {
+  fs.readdir(filePath, function (err, files) {
     //handling error
     if (err) {
       return console.log('Unable to scan directory: ' + err);
     }
 
     //listing all files using forEach
+    //FIXME: I don't think I'm getting all files - see if there's a problem to resolve
     files.forEach(function (file) {
-      let newPath = path + '/' + file;
+      let newPath = filePath + '/' + file;
 
       if (fs.lstatSync(newPath).isDirectory()) {
         getMusicFiles(newPath);
       } else {
-        //musicFiles.push(file);
-        //musicFiles.push(file);
-        console.log(file);
-
-        //FIXME: I don't think I'm getting all files - see if there's a problem to resolve
-
-        //TODO: Extract file info and append to file here?
+        //Only want to get mp3 and m4a files
+        if (path.extname(file) == '.mp3' || path.extname(file) == '.m4a') {
+          console.log(file);
+        }
       }
     });
 
