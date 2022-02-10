@@ -117,6 +117,8 @@ getMusicFiles = (filePath) => {
         //Only want to get mp3 and m4a files
         if (path.extname(file) == '.mp3' || path.extname(file) == '.m4a') {
           console.log(file);
+
+          //TODO: Attempt to get file info from songs (title and artists)
         }
       }
     });
