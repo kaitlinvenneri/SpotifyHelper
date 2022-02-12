@@ -1,4 +1,7 @@
-exports.token =
-  'BQCPp5ttC7v3k_dWTCMB-zJKBbnVlFjKl8l50KnquzwgiY5knqz5wWLZbFW0eKGbdKpTQ3Plfo-8yCk_tzrUzEADsAsSIXR0W1un2JJsZfCf04OPWWmBM_WwcEaW3jLKqPHC3eEZA7fq7ituNiwtoHyGXdxf3a905O4Ijov-BKK6WOnaq25JDJgzdN0';
+exports.likedToken =
+  'BQAXUMFVJC2lYYCW8IG2NMEh6vx3ZbpU_6FJZ4CzLmP35IzyP6LWMC1W9bpIz8Y4x3xX0TBigHBQWJ3u4CfJGvtH__OVvnMu29HALdFSjyFuaUUIqRYWaqeStJEkbmH3pGjH0ZfmYCwfRPfh4RQl81WQzSLBXC727NYHJEguML1s7VM-MYWNTuHog-A';
+
+exports.playlistToken =
+  'BQBSLWvRRSVdNF9Ev2h-dCEpxwvev_Q3DBukMEgGCzRZZ10ldnZ75WBFQDfZ8cOvHXoExD76-uaU-epcl60dUuh9X0Bhmt8UTJLtLEr32T01K3Dx_luCF0KUnmRo3WrqY81Z0Q6apcyMXAPwAExla7mjnI60YA7i1wWoP3T_5-lcd36q';
 
 exports.localFilePath = '../../SamsungMusic';
