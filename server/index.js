@@ -40,8 +40,71 @@ app.get('/findMissingTracks', async (req, response) => {
   //console.log(playlistTracks);
   console.log('number of playlist tracks = ' + playlistTracks.length);
 
-  response.send('tempResponse');
+  let missingFromLiked = findDifferences(playlistTracks, likedTracks);
+
+  console.log('number of missing tracks = ' + missingFromLiked.length);
+
+  response.send(missingFromLiked);
 });
+
+findDifferences = (playlistTracks, likedTracks) => {
+  const tracks = [];
+  //const duplicates = [];
+
+  //Put liked tracks into a map
+  const likedMap = putLikedTracksInMap(likedTracks);
+  console.log('songs in liked map = ' + likedMap.size);
+
+  //Check which tracks are in playlist, but not in the liked songs map
+  for (let playlistTrack of playlistTracks) {
+    let matchFound = false;
+
+    //Check if liked songs has track with the same name
+    if (likedMap.has(playlistTrack.name.toUpperCase())) {
+      matchFound = true;
+      // //Check if liked songs has track with the same artist (& name)
+      // for (let playlistArtist of playlistTrack.artists) {
+      //   let likedArtists = likedMap.get(playlistTrack.name.toUpperCase());
+
+      //   //TODO: Optimize this by making the values in likedMap a map of artists?
+      //   for (let likedArtist of likedArtists) {
+      //     if (likedArtist.toUpperCase() === playlistArtist.toUpperCase()) {
+      //       matchFound = true;
+
+      //       //TODO: break or continue here?
+      //     }
+      //   }
+      // }
+    }
+
+    if (matchFound == false) {
+      tracks.push(playlistTrack);
+    }
+  }
+
+  return tracks;
+};
+
+putLikedTracksInMap = (likedTracks) => {
+  //Put liked tracks into a map
+  const likedMap = new Map();
+
+  for (let liked of likedTracks) {
+    //track name is the key, artist array is the value for each map element
+
+    if (likedMap.has(liked.name.toUpperCase())) {
+      //if a track with the same name is already in the map, add artists to artist array
+      let tempArtists = likedMap.get(liked.name.toUpperCase());
+      tempArtists.push(...liked.artists);
+
+      //console.log(likedMap.get(liked.name));
+    } else {
+      likedMap.set(liked.name.toUpperCase(), liked.artists);
+    }
+  }
+
+  return likedMap;
+};
 
 getTracksFromSpotify = async (token, endpoint) => {
   let tracks = [];
