@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //Homepage Component
 class Homepage extends Component {
-  state = {};
+  state = { tracks: [], loaded: false };
 
   async componentDidMount() {
     //Get missing tracks
@@ -15,31 +15,47 @@ class Homepage extends Component {
       'http://localhost:4000/findMissingTracks'
     );
 
-    //this.setState({ tracks });
+    //console.log(tracks);
+
+    this.setState({ tracks });
+
+    this.setState({ loaded: true });
+
+    //console.log(this.state.tracks[0].name);
   };
 
   render() {
-    return (
-      <div>
-        <h1>Missing Songs:</h1>
-        <table className="table table-info">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Song</th>
-              <th scope="col">Artist(s)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Example Song</td>
-              <td>Example Artist</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    );
+    if (this.state.loaded === false) {
+      return (
+        <div className="d-flex flex-column justify-content-center align-items-center">
+          <h1>Missing Songs:</h1>
+          <h2>Loading...</h2>
+          <div className="spinner-border text-primary" />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1>Missing Songs:</h1>
+          <table className="table table-info">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Song</th>
+                <th scope="col">Artist(s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>{this.state.tracks[0].name}</td>
+                <td>Example Artist</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      );
+    }
   }
 }
 
