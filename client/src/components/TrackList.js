@@ -16,8 +16,6 @@ class TrackList extends Component {
   }
 
   render() {
-    //this.state.tracks.map((track, index) => console.log(index));
-
     return (
       <div>
         <table className="table table-striped">
