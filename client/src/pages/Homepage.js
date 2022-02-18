@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import NavBar from './../components/NavBar';
+import TrackList from './../components/TrackList';
 
 //Homepage Component
 class Homepage extends Component {
@@ -42,22 +43,7 @@ class Homepage extends Component {
         <div>
           <NavBar></NavBar>
           <h1 className="mt-2">Missing Songs</h1>
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Song</th>
-                <th scope="col">Artist(s)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>{this.state.tracks[0].name}</td>
-                <td>{this.state.tracks[0].artists[0]}</td>
-              </tr>
-            </tbody>
-          </table>
+          <TrackList tracks={this.state.tracks}></TrackList>
         </div>
       );
     }
