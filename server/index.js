@@ -1,6 +1,7 @@
 const axios = require('axios');
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
 const app = express();
 const config = require('./config');
 
@@ -15,6 +16,16 @@ app.listen(4000, () => {
 //Endpoint for homepage
 app.get('/', (req, res) => {
   res.send('homepage');
+});
+
+//Endpoint to get temp missing track data for frontend development
+app.get('/missingTracksTemp', async (req, response) => {
+  let rawdata = fs.readFileSync('missingSongs.json');
+  let tempData = JSON.parse(rawdata);
+
+  //console.log(tempData);
+
+  response.send(tempData);
 });
 
 //Endpoint to find tracks that are local and not in likes on Spotify

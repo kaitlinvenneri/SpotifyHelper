@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import NavBar from './../components/NavBar';
 
 //Homepage Component
 class Homepage extends Component {
@@ -11,8 +12,9 @@ class Homepage extends Component {
   }
 
   getMissingTracks = async () => {
+    //Get temporary data for now
     const { data: tracks } = await axios.get(
-      'http://localhost:4000/findMissingTracks'
+      'http://localhost:4000/missingTracksTemp'
     );
 
     //console.log(tracks);
@@ -27,17 +29,20 @@ class Homepage extends Component {
   render() {
     if (this.state.loaded === false) {
       return (
-        <div className="d-flex flex-column justify-content-center align-items-center">
-          <h1>Missing Songs:</h1>
-          <h2>Loading...</h2>
-          <div className="spinner-border text-primary" />
+        <div>
+          <NavBar></NavBar>
+          <div className="mt-2 d-flex flex-column justify-content-center align-items-center">
+            <h1>Loading...</h1>
+            <div className="spinner-border text-info" />
+          </div>
         </div>
       );
     } else {
       return (
         <div>
-          <h1>Missing Songs:</h1>
-          <table className="table table-info">
+          <NavBar></NavBar>
+          <h1 className="mt-2">Missing Songs</h1>
+          <table className="table table-striped">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -49,7 +54,7 @@ class Homepage extends Component {
               <tr>
                 <th scope="row">1</th>
                 <td>{this.state.tracks[0].name}</td>
-                <td>Example Artist</td>
+                <td>{this.state.tracks[0].artists[0]}</td>
               </tr>
             </tbody>
           </table>
