@@ -1,14 +1,7 @@
 const axios = require('axios');
-const express = require('express');
 const fs = require('fs');
-const app = express();
 const path = require('path');
 const config = require('../config/tokens');
-
-//Endpoint for homepage
-app.get('/', (req, res) => {
-  res.send('homepage');
-});
 
 //Endpoint to get temp missing track data for frontend development
 exports.getTempMissingTracks = async (req, response) => {
@@ -23,7 +16,7 @@ exports.getTempMissingTracks = async (req, response) => {
 };
 
 //Endpoint to find tracks that are local and not in likes on Spotify
-app.get('/findMissingTracks', async (req, response) => {
+exports.getMissingTracks = async (req, response) => {
   let likedTracks = await getTracksFromSpotify(
     config.likedToken,
     'https://api.spotify.com/v1/me/tracks'
@@ -50,7 +43,7 @@ app.get('/findMissingTracks', async (req, response) => {
   console.log('number of missing tracks = ' + missingFromLiked.length);
 
   response.send(missingFromLiked);
-});
+};
 
 findDifferences = (playlistTracks, likedTracks) => {
   const tracks = [];

@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const playlists = require('../playlists');
 
-//const router = new Router();
-
 // endpoints
 router.get('/missingTracksTemp', playlists.getTempMissingTracks);
+router.get('/missingTracks', playlists.getMissingTracks);
 
 module.exports = router;
