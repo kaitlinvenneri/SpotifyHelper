@@ -6,6 +6,7 @@ const router = require('./router');
 //cors needed for React integration since frontend exists on its own server
 app.use(cors());
 
+//handle the routing for the server
 app.use(router);
 
 //server reachable at http://localhost:4000

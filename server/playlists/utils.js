@@ -38,7 +38,7 @@ exports.findDifferences = (playlistTracks, likedTracks) => {
   return tracks;
 };
 
-putLikedTracksInMap = (likedTracks) => {
+exports.putLikedTracksInMap = (likedTracks) => {
   //Put liked tracks into a map
   const likedMap = new Map();
 
