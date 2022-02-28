@@ -1,2 +1,5 @@
 # dependencies
 /node_modules
+
+#unit test coverage
+/coverage
