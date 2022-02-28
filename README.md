@@ -9,9 +9,9 @@
 ### Technical Stack:
 
 - Node.js, Express.js
+- Jest (currently testing server side code)
 - Spotify Web API
 - React.js
-- Jest (currently testing server side code)
 - MongoDB (to be added next)
 
 <hr>
