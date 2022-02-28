@@ -11,6 +11,7 @@
 - Node.js, Express.js
 - Spotify Web API
 - React.js
+- Jest (currently testing server side code)
 - MongoDB (to be added next)
 
 <hr>
