@@ -1,6 +1,8 @@
 const utils = require('./utils');
 
 describe('Put Liked Tracks in Map', () => {
+  //FIXME: Use "rewire" to access unexported function (putLikedTracksInMap)
+
   test('should put all songs in a map and capitalize the song name', () => {
     const song = { name: 'song 1', artists: ['artist1'] };
 
